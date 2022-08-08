@@ -30,9 +30,9 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final int SERVER_PORT = 5050;
+    public static final int SERVER_PORT = 8888;
 
-    public static final String SERVER_IP = "192.168.43.212";
+    public static final String SERVER_IP = "10.0.2.2";
     private ClientThread clientThread;
     private Thread thread;
     private LinearLayout msgList;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle("Client");
+        setTitle("Android-Socket-Programming (Client)");
         clientTextColor = ContextCompat.getColor(this, R.color.green);
         handler = new Handler();
         msgList = findViewById(R.id.msgList);
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             String clientMessage = edMessage.getText().toString().trim();
             showMessage(clientMessage, Color.BLUE, false);
             if (null != clientThread) {
-                if (clientMessage.length() > 0){
+                if (clientMessage.length() > 0) {
                     clientThread.sendMessage(clientMessage);
                 }
                 edMessage.setText("");
@@ -112,18 +112,18 @@ public class MainActivity extends AppCompatActivity {
 
             try {
 
-                    InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
-                    showMessage("Connecting to Server...", clientTextColor, true);
+                InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
+                showMessage("Connecting to Server...", clientTextColor, true);
 
-                    socket = new Socket(serverAddr, SERVER_PORT);
+                socket = new Socket(serverAddr, SERVER_PORT);
 
-                    if (socket.isBound()){
+                if (socket.isBound()) {
 
-                        showMessage("Connected to Server...", clientTextColor, true);
-                    }
+                    showMessage("Connected to Server...", clientTextColor, true);
+                }
 
 
-        while (!Thread.currentThread().isInterrupted()) {
+                while (!Thread.currentThread().isInterrupted()) {
 
 
                     this.input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 Thread.interrupted();
                 e1.printStackTrace();
             } catch (NullPointerException e3) {
-                showMessage("error returned", Color.RED,true);
+                showMessage("error returned", Color.RED, true);
             }
 
         }

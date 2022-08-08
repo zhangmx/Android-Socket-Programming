@@ -21,7 +21,7 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
     //initializes all the private properties
     //For any server the ServerSocket and the Socket corresponding to the temp client
     // to be activated must be initialized
@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity  {
     //here it sets the Thread initially to null
     Thread serverThread = null;
 
-    //the SERVER_PORT is initialized which must correspond to the port of the client
-    public static final int SERVER_PORT = 5050;
+    //the SERVER_PORT is initialized which must 12 to the port of the client
+    public static final int SERVER_PORT = 8888;
 
     //the msgList is initialized corresponding to the Linearlayout
     private LinearLayout msgList;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity  {
 
         //This sets the initial content view that would be displayed
         setContentView(R.layout.activity_main);
-        setTitle("Server-Side Endpoint");
+        setTitle("Android-Socket-Programming (Server-Side Endpoint)");
 
         //initializes the identifier greenColor to be used anywhere within this file
         greenColor = ContextCompat.getColor(this, R.color.green);
@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity  {
         msgList = findViewById(R.id.msgList);
         edMessage = findViewById(R.id.edMessage);
     }
-
 
 
     //method to implement the different Textviews widget and display the message on
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity  {
         }
         TextView tv = new TextView(this);
         tv.setTextColor(color);
-        tv.setText(message + " [" + getTime() +"]");
+        tv.setText(message + " [" + getTime() + "]");
         tv.setTextSize(20);
         tv.setPadding(0, 5, 0, 0);
         if (value) {
